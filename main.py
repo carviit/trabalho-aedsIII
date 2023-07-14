@@ -1,17 +1,9 @@
-import requests
-import json
+from grafo_deputados import Deputados
 
-informacoesIDS = requests.get("https://dadosabertos.camara.leg.br/api/v2/votacoes?dataInicio=2022-01-01&ordem=DESC&ordenarPor=dataHoraRegistro")
-informacoesIDS = informacoesIDS.json()
+grafoDeputados = Deputados()
 
-for i in range(len(informacoesIDS["dados"])):
-    ids = informacoesIDS["dados"][i]
+grafoDeputados.criar_grafo()
 
-    ids_total = "https://dadosabertos.camara.leg.br/api/v2/votacoes/" +  ids["id"]  + "/votos"
-    request = requests.get(ids_total)
-    request = request.json()
+grafoDeputados.escrever_grafo_final()
 
-    with open("ids.txt", 'a') as file:
-        if request["dados"] != []:
-
-            file.write(f"{ids_total}\n")  
+grafoDeputados.escrever_grafo_participacao()
