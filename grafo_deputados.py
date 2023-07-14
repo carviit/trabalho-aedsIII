@@ -72,12 +72,3 @@ class Deputados:
         with open("grafo_participacao.txt", 'w') as file:
             for dep in self.adj_list:
                 file.write(f"{dep} {self.adj_list[dep]['participacao']}\n")
-
-if __name__ == "__main__":
-    grafoDeputados = Deputados()
-
-    grafoDeputados.criar_grafo()
-
-    grafoDeputados.escrever_grafo_final()
-
-    grafoDeputados.escrever_grafo_participacao()
